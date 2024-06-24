@@ -14,21 +14,20 @@ To run the `sus-connection-sniffer.ps1` script, follow these steps:
 ## Description 
 
 This PowerShell script performs the following tasks:
-
 1. It defines the Quad9 and Google DNS server addresses as variables.
-2. It defines a function called Resolve-RemoteAddress that attempts to resolve a provided remote IP address to a fully qualified domain name (FQDN) using Quad9 and Google DNS servers.
-3. It defines a function called Get-ResolvedConnections that retrieves the active TCP connections in the Listen and Established states, resolves the remote address of each connection to an FQDN using the Resolve-RemoteAddress function, and returns a collection of custom objects representing the active TCP connections with resolved FQDN and process information.
-4. It calls the Get-ResolvedConnections function and assigns the result to the $resolvedConnections variable.
-5. It formats and displays the $resolvedConnections variable using the Format-Table cmdlet.
-6. It generates 2-3 digit UUIDs for each connection in the $resolvedConnections variable and assigns the UUIDs along with the connection details to the $connectionUUIDs variable.
-7. It displays the UUIDs, remote addresses, resolved FQDNs, and process names in a table using the Format-Table cmdlet.
-8. It initializes an empty array called $suspiciousConnections and a variable called $userInput with a value of $null.
+2. It defines a function called `Resolve-RemoteAddress` that attempts to resolve a provided remote IP address to a fully qualified domain name (FQDN) using Quad9 and Google DNS servers.
+3. It defines a function called `Get-ResolvedConnections` that retrieves the active TCP connections in the Listen and Established states, resolves the remote address of each connection to an FQDN using the `Resolve-RemoteAddress` function, and returns a collection of custom objects representing the active TCP connections with resolved FQDN and process information.
+4. It calls the `Get-ResolvedConnections` function and assigns the result to the `$resolvedConnections` variable.
+5. It formats and displays the `$resolvedConnections` variable using the `Format-Table` cmdlet.
+6. It generates 2-3 digit UUIDs for each connection in the `$resolvedConnections` variable and assigns the UUIDs along with the connection details to the `$connectionUUIDs` variable.
+7. It displays the UUIDs, remote addresses, resolved FQDNs, and process names in a table using the `Format-Table` cmdlet.
+8. It initializes an empty array called `$suspiciousConnections` and a variable called `$userInput` with a value of `$null`.
 9. It enters a do-while loop that prompts the user to enter the UUID(s) of suspicious connections (separated by commas) or press Enter to continue.
-10. If the user enters UUID(s), the script splits the input by commas, trims any whitespace, and adds the corresponding connections to the $suspiciousConnections array.
+10. If the user enters UUID(s), the script splits the input by commas, trims any whitespace, and adds the corresponding connections to the `$suspiciousConnections` array.
 11. The loop continues until the user enters an empty string.
-12. If there are any suspicious connections in the $suspiciousConnections array, the script displays them using the Format-Table cmdlet.
+12. If there are any suspicious connections in the `$suspiciousConnections` array, the script displays them using the `Format-Table` cmdlet.
 13. It prompts the user to confirm whether they want to remove these connections by entering 'Y' or 'N'.
-14. If the user enters 'Y', the script iterates over each suspicious connection, checks if the connection still exists using the Get-NetTCPConnection cmdlet, and if found, disposes of the connection using the Dispose() method. It also displays a message indicating whether the connection was successfully disposed or not.
+14. If the user enters 'Y', the script iterates over each suspicious connection, checks if the connection still exists using the `Get-NetTCPConnection` cmdlet, and if found, disposes of the connection using the `Dispose()` method. It also displays a message indicating whether the connection was successfully disposed or not.
 
 ## TODOs
 
